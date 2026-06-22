@@ -7,6 +7,10 @@ import lombok.Setter;
 @AllArgsConstructor
 @Getter
 public enum ErrorCode {
+    // Authentication
+    EMPLOYEE_NOT_FOUND(404, "employee not found"),
+    INVALID_PASSWORD(400, "invalid password"),
+    // Customer
     CUSTOMER_NOT_FOUND(404, "customer not found");
 
     private final int code;

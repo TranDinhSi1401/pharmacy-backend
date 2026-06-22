@@ -7,8 +7,8 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 
 @ControllerAdvice
 public class GlobalExceptionHandler {
-    @ExceptionHandler(CustomedException.class)
-    public ResponseEntity<ApiResponse<Object>> handlingException(CustomedException e) {
+    @ExceptionHandler(CustomException.class)
+    public ResponseEntity<ApiResponse<Object>> handlingException(CustomException e) {
         ErrorCode errorCode = e.getErrorCode();
         ApiResponse<Object> apiResponse = new ApiResponse<>();
 

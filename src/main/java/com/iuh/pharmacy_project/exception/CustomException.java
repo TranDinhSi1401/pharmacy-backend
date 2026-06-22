@@ -5,10 +5,10 @@ import lombok.Setter;
 
 @Setter
 @Getter
-public class CustomedException extends RuntimeException {
+public class CustomException extends RuntimeException {
     private ErrorCode errorCode;
 
-    public CustomedException(ErrorCode errorCode) {
+    public CustomException(ErrorCode errorCode) {
         super(errorCode.getMessage());
         this.errorCode = errorCode;
     }
