@@ -19,5 +19,5 @@ public class EmployeeDto {
     boolean gender;
     LocalDate birthDate;
     String address;
-    boolean isRetired;
+    Boolean isRetired;
 }

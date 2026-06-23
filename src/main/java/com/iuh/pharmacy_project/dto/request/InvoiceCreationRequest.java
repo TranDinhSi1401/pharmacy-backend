@@ -1,9 +1,7 @@
 package com.iuh.pharmacy_project.dto.request;
 
-import com.iuh.pharmacy_project.entity.InvoiceDetail;
 import lombok.*;
-
-import java.time.LocalDateTime;
+import lombok.experimental.FieldDefaults;
 import java.util.List;
 
 @NoArgsConstructor
@@ -12,11 +10,11 @@ import java.util.List;
 @Getter
 @ToString
 @Builder
+@FieldDefaults(level = AccessLevel.PRIVATE)
 public class InvoiceCreationRequest {
-    private String employeeId;
-    private String customerId;
-    private LocalDateTime createdDate;
-    private boolean isBankTransfer;
-    private double totalAmount;
-    private List<InvoiceDetail> details;
+    String employeeId;
+    String customerId;
+    boolean isBankTransfer;
+    double totalAmount;
+    List<InvoiceDetailRequest> details;
 }

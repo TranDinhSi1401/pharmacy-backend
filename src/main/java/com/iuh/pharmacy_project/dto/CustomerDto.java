@@ -14,5 +14,5 @@ public class CustomerDto {
     String firstName;
     String phone;
     Long points;
-    boolean isDeleted;
+    Boolean isDeleted;
 }

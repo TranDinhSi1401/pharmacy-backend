@@ -2,12 +2,10 @@ package com.iuh.pharmacy_project.controller;
 
 import com.iuh.pharmacy_project.dto.ApiResponse;
 import com.iuh.pharmacy_project.dto.InvoiceDto;
+import com.iuh.pharmacy_project.dto.request.InvoiceCreationRequest;
 import com.iuh.pharmacy_project.service.InvoiceService;
 import lombok.AllArgsConstructor;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDate;
 import java.util.List;
@@ -27,7 +25,15 @@ public class InvoiceController {
 
         ApiResponse<List<InvoiceDto>> response = new ApiResponse<>();
         response.setResult(invoiceService.getInvoices(startDate, endDate, employeeId, phone));
-        response.setMessage("success");
+        response.setMessage("Fetched Invoices successfully");
+        return response;
+    }
+
+    @PostMapping
+    public ApiResponse<InvoiceDto> createInvoice(@RequestBody InvoiceCreationRequest request) {
+        ApiResponse<InvoiceDto> response = new ApiResponse<>();
+        response.setResult(invoiceService.createInvoice(request));
+        response.setMessage("Invoice created successfully");
         return response;
     }
 }

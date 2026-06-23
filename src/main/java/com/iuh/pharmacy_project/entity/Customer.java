@@ -25,5 +25,5 @@ public class Customer {
 
     Long points;
 
-    boolean isDeleted;
+    Boolean isDeleted;
 }

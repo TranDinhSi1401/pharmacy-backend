@@ -17,7 +17,7 @@ public class InvoiceDto {
     String employeeId;
     String customerId;
     LocalDateTime createdDate;
-    boolean isBankTransfer;
+    Boolean isBankTransfer;
     double totalAmount;
     List<InvoiceDetail> details;
 }

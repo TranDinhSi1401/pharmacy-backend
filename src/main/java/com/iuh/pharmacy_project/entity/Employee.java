@@ -31,7 +31,7 @@ public class Employee {
 
     String address;
 
-    boolean isRetired;
+    Boolean isRetired;
 
     Account account;
 }
