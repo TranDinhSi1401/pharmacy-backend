@@ -12,6 +12,7 @@ import lombok.AllArgsConstructor;
 import lombok.experimental.FieldDefaults;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Optional;
 
 @AllArgsConstructor
@@ -20,6 +21,11 @@ import java.util.Optional;
 public class CustomerService {
     final CustomerRepository customerRepository;
     final CustomerMapper customerMapper;
+
+    public List<CustomerDto> getAllCustomers() {
+        List<Customer> customers = customerRepository.findAll();
+        return customers.stream().map(customerMapper::toDto).collect(java.util.stream.Collectors.toList());
+    }
 
     public CustomerDto getCustomerByPhone(String phone) {
         Optional<Customer> optional = customerRepository.findByPhone(phone);

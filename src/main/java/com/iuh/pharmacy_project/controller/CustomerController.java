@@ -7,8 +7,9 @@ import com.iuh.pharmacy_project.service.CustomerService;
 import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @Slf4j
 @AllArgsConstructor
@@ -17,9 +18,16 @@ import org.springframework.web.bind.annotation.*;
 public class CustomerController {
     private final CustomerService customerService;
 
+    @GetMapping
+    public ApiResponse<List<CustomerDto>> getAllCustomers() {
+        ApiResponse<List<CustomerDto>> response = new ApiResponse<>();
+        response.setResult(customerService.getAllCustomers());
+        response.setMessage("Fetched customers successfully");
+        return response;
+    }
+
     @GetMapping("/search")
     public ApiResponse<CustomerDto> getCustomerByPhone(@RequestParam String phone) {
-        var authentication = SecurityContextHolder.getContext().getAuthentication();
 
         ApiResponse<CustomerDto> response = new ApiResponse<>();
         response.setResult(customerService.getCustomerByPhone(phone));
