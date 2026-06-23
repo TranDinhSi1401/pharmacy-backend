@@ -5,8 +5,11 @@ import com.iuh.pharmacy_project.dto.CustomerDto;
 import com.iuh.pharmacy_project.dto.request.CustomerCreationRequest;
 import com.iuh.pharmacy_project.service.CustomerService;
 import jakarta.validation.Valid;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Pattern;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -15,6 +18,7 @@ import java.util.List;
 @AllArgsConstructor
 @RestController
 @RequestMapping("/customers")
+@Validated
 public class CustomerController {
     private final CustomerService customerService;
 
@@ -27,8 +31,10 @@ public class CustomerController {
     }
 
     @GetMapping("/search")
-    public ApiResponse<CustomerDto> getCustomerByPhone(@RequestParam String phone) {
-
+    public ApiResponse<CustomerDto> getCustomerByPhone(@RequestParam
+                @NotBlank(message = "Phone number must not be blank")
+                @Pattern(regexp = "^\\d{10}$", message = "Phone number must be 10 digits")
+                                                           String phone) {
         ApiResponse<CustomerDto> response = new ApiResponse<>();
         response.setResult(customerService.getCustomerByPhone(phone));
         response.setMessage("Fetched customer successfully");

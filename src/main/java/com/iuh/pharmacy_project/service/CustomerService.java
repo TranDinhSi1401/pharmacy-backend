@@ -28,6 +28,7 @@ public class CustomerService {
     }
 
     public CustomerDto getCustomerByPhone(String phone) {
+
         Optional<Customer> optional = customerRepository.findByPhone(phone);
 
         Customer customer = optional.orElseThrow(() ->
