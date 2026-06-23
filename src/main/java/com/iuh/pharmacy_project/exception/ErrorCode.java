@@ -15,8 +15,9 @@ public enum ErrorCode {
     // Product
     PRODUCT_NOT_FOUND(404, "product not found"),
     UNIT_NOT_FOUND(404, "unit not found"),
-    NOT_ENOUGH_QUANTITY(400, "not enough quantity");
-
+    NOT_ENOUGH_QUANTITY(400, "not enough quantity"),
+    // Invoice
+    TOTAL_AMOUNT_MISMATCH(400, "total amount mismatch"),;
 
     private final int code;
     private final String message;

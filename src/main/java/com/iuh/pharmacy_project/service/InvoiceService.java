@@ -68,6 +68,13 @@ public class InvoiceService {
 
     @Transactional // Chỉ áp dụng nếu mongo xài replica set
     public InvoiceDto createInvoice(InvoiceCreationRequest request) {
+        double total = request.getDetails().stream()
+                .mapToDouble(r -> r.getQuantity() * r.getPrice())
+                .sum();
+
+        if (Math.abs(total - request.getTotalAmount()) > 0.01) {
+            throw new CustomException(ErrorCode.TOTAL_AMOUNT_MISMATCH);
+        }
 
         List<InvoiceDetail> details = new ArrayList<>();
 
