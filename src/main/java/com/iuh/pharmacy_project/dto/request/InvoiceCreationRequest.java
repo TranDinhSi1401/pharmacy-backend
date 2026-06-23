@@ -1,4 +1,4 @@
-package com.iuh.pharmacy_project.dto;
+package com.iuh.pharmacy_project.dto.request;
 
 import com.iuh.pharmacy_project.entity.InvoiceDetail;
 import lombok.*;

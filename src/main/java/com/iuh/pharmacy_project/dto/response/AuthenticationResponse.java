@@ -1,5 +1,7 @@
 package com.iuh.pharmacy_project.dto.response;
 
+import com.iuh.pharmacy_project.dto.EmployeeDto;
+import com.iuh.pharmacy_project.entity.Employee;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
 
@@ -10,5 +12,5 @@ import lombok.experimental.FieldDefaults;
 @FieldDefaults(level = AccessLevel.PRIVATE)
 public class AuthenticationResponse {
     String token;
-    boolean authenticated;
+    EmployeeDto employee;
 }

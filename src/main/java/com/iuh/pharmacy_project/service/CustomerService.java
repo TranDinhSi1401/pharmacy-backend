@@ -1,6 +1,7 @@
 package com.iuh.pharmacy_project.service;
 
 import com.iuh.pharmacy_project.dto.CustomerDto;
+import com.iuh.pharmacy_project.dto.request.CustomerCreationRequest;
 import com.iuh.pharmacy_project.entity.Customer;
 import com.iuh.pharmacy_project.exception.CustomException;
 import com.iuh.pharmacy_project.exception.ErrorCode;
@@ -28,5 +29,22 @@ public class CustomerService {
         );
 
         return customerMapper.toDto(customer);
+    }
+
+    public CustomerDto createCustomer(CustomerCreationRequest request) {
+        long numOfCustomer = customerRepository.count();
+
+        return customerMapper.toDto(
+                customerRepository.save(
+                        Customer.builder()
+                                .id(String.format("KH-%05d", numOfCustomer))
+                                .lastName(request.getLastName())
+                                .firstName(request.getFirstName())
+                                .phone(request.getPhone())
+                                .points(0L)
+                                .isDeleted(false)
+                                .build()
+                )
+        );
     }
 }

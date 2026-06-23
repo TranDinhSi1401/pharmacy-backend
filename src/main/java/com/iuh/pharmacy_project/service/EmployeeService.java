@@ -1,22 +1,23 @@
 package com.iuh.pharmacy_project.service;
 
+import com.iuh.pharmacy_project.dto.EmployeeDto;
 import com.iuh.pharmacy_project.entity.Employee;
+import com.iuh.pharmacy_project.mapper.EmployeeMapper;
 import com.iuh.pharmacy_project.repository.EmployeeRepository;
 import lombok.AllArgsConstructor;
+import lombok.experimental.FieldDefaults;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 @AllArgsConstructor
 @Service
+@FieldDefaults(level = lombok.AccessLevel.PRIVATE)
 public class EmployeeService {
-    private final EmployeeRepository employeeRepository;
+    final EmployeeRepository employeeRepository;
+    final EmployeeMapper employeeMapper;
 
-    public Employee insertAEmployee(Employee employee) {
-        return employeeRepository.save(employee);
-    }
-
-    public List<Employee> getAllEmployee() {
-        return employeeRepository.findAll();
+    public List<EmployeeDto> getAllEmployee() {
+        return employeeRepository.findAll().stream().map(employeeMapper::toDto).toList();
     }
 }

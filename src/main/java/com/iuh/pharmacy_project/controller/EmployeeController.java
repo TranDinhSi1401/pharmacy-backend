@@ -1,5 +1,7 @@
 package com.iuh.pharmacy_project.controller;
 
+import com.iuh.pharmacy_project.dto.ApiResponse;
+import com.iuh.pharmacy_project.dto.EmployeeDto;
 import com.iuh.pharmacy_project.entity.Employee;
 import com.iuh.pharmacy_project.service.EmployeeService;
 import lombok.AllArgsConstructor;
@@ -15,7 +17,10 @@ public class EmployeeController {
     private final EmployeeService employeeService;
 
     @GetMapping
-    public List<Employee> getAllEmployee() {
-        return employeeService.getAllEmployee();
+    public ApiResponse<List<EmployeeDto>> getAllEmployee() {
+        return ApiResponse.<List<EmployeeDto>>builder()
+                .result(employeeService.getAllEmployee())
+                .message("Fetched all employees successfully")
+                .build();
     }
 }

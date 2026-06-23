@@ -2,7 +2,9 @@ package com.iuh.pharmacy_project.controller;
 
 import com.iuh.pharmacy_project.dto.ApiResponse;
 import com.iuh.pharmacy_project.dto.request.AuthenticationRequest;
+import com.iuh.pharmacy_project.dto.request.IntrospectRequest;
 import com.iuh.pharmacy_project.dto.response.AuthenticationResponse;
+import com.iuh.pharmacy_project.dto.response.IntrospectResponse;
 import com.iuh.pharmacy_project.service.AuthenticationService;
 import lombok.AccessLevel;
 import lombok.RequiredArgsConstructor;
@@ -20,9 +22,17 @@ public class AuthenticationController {
     final AuthenticationService authenticationService;
 
     @PostMapping("/login")
-    public ApiResponse<AuthenticationResponse> login(@RequestBody AuthenticationRequest authenticationRequest) {
+    public ApiResponse<AuthenticationResponse> authenticate(@RequestBody AuthenticationRequest authenticationRequest) {
         AuthenticationResponse result = authenticationService.authenticate(authenticationRequest);
         return ApiResponse.<AuthenticationResponse>builder()
+                .result(result)
+                .build();
+    }
+
+    @PostMapping("/introspect")
+    public ApiResponse<IntrospectResponse> introspect(@RequestBody IntrospectRequest introspectRequest) {
+        IntrospectResponse result = authenticationService.introspect(introspectRequest);
+        return ApiResponse.<IntrospectResponse>builder()
                 .result(result)
                 .build();
     }

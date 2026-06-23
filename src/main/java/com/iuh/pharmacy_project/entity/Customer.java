@@ -3,6 +3,7 @@ package com.iuh.pharmacy_project.entity;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
 import org.springframework.data.annotation.Id;
+import org.springframework.data.annotation.TypeAlias;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 @Data
@@ -11,6 +12,7 @@ import org.springframework.data.mongodb.core.mapping.Document;
 @Builder
 @FieldDefaults(level = AccessLevel.PRIVATE)
 @Document(collection = "customers")
+@TypeAlias("Customer")
 public class Customer {
     @Id
     String id;

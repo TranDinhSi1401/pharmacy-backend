@@ -3,16 +3,21 @@ package com.iuh.pharmacy_project.dto;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
 
+import java.time.LocalDate;
+
 @Data
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
 @FieldDefaults(level = AccessLevel.PRIVATE)
-public class CustomerDto {
+public class EmployeeDto {
     String id;
     String lastName;
     String firstName;
     String phone;
-    Long points;
-    boolean isDeleted;
+    String idCard;
+    boolean gender;
+    LocalDate birthDate;
+    String address;
+    boolean isRetired;
 }

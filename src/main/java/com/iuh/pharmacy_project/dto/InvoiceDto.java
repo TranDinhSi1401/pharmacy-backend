@@ -1,23 +1,18 @@
-package com.iuh.pharmacy_project.entity;
+package com.iuh.pharmacy_project.dto;
 
+import com.iuh.pharmacy_project.entity.InvoiceDetail;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
-import org.springframework.data.annotation.Id;
-import org.springframework.data.annotation.TypeAlias;
-import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.time.LocalDateTime;
 import java.util.List;
 
 @Data
-@NoArgsConstructor
-@AllArgsConstructor
 @Builder
+@AllArgsConstructor
+@NoArgsConstructor
 @FieldDefaults(level = AccessLevel.PRIVATE)
-@Document(collection = "invoices")
-@TypeAlias("Invoice")
-public class Invoice {
-    @Id
+public class InvoiceDto {
     String id;
     String employeeId;
     String customerId;
